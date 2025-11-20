@@ -1,4 +1,4 @@
-from AutoCommunityConsti import seatCalculator
+from CalculatingSeats import seatCalculator
 import pandas as pd
 import matplotlib.pyplot as plt
 

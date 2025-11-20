@@ -4,7 +4,7 @@ from Provinces import df_seats_2023
 
 #This Shows the American style of election: provinces are like states the winner takes all seats there
 def seatCalculator(seatsRatio=1):
-    excel_file = 'G2023julio_mesas.xlsx'
+    excel_file = '../G2023julio_mesas.xlsx'
 
     df = pd.read_excel('G2023julio_mesas.xlsx', sheet_name='PROVINCIAS (OFICIALES)')
     df = pd.merge(df, df_seats_2023, on='PROVINCIA', how='outer')

@@ -1,9 +1,7 @@
 import plotly.express as px
 import geopandas as gpd
-from AutoCommunityConsti import seatCalculator
 from Provinces import df_seats_2023
-from WInnertakesall import seatCalculator
-import numpy as np
+from Old.WInnertakesall import seatCalculator
 
 # Load Spain provinces GeoJSON into a GeoDataFrame
 gdf = gpd.read_file(

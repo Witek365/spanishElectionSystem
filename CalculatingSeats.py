@@ -11,7 +11,7 @@ def seatCalculator(seatRatio=1, cutoff=0, localPlotter=False):
     seats = SeatAllocator(seatRatio)
     df = pd.merge(df, seats, on='PROVINCIA', how='outer')
 
-    #with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+    # with pd.option_context('display.max_rows', None, 'display.max_columns', None):
     #   print(df)
 
     df = df.set_index('PROVINCIA')
@@ -22,9 +22,9 @@ def seatCalculator(seatRatio=1, cutoff=0, localPlotter=False):
         votes_sum = province_votes[:-1].sum()
         labels = votes_sum.loc[votes_sum < valid_votes.sum() * cutoff].index
         labels = labels[:-1]
-        #print(labels)
+        # print(labels)
         province_votes = province_votes.drop(columns=labels)
-        #print(province_votes)
+        # print(province_votes)
 
     def dhondt_allocation_row_with_seats(row: pd.Series) -> pd.Series:
         total_seats = row['Congress_Seats_2023']
@@ -79,14 +79,14 @@ def seatCalculator(seatRatio=1, cutoff=0, localPlotter=False):
     resslsum = ressl.sum() / seatRatio
     reswtasum = reswta.sum() / seatRatio
     ressc = SingleConstituency(province_votes)
-    #ressc[ressc > 0].plot(kind="bar")
-    #plt.show()
-    #sbs = resdhosum.to_frame("Dhondt" + str(ratio)).join(
-    #resslsum.to_frame("sain lague" + str(ratio)).join(reswtasum.to_frame("Winner takes all" + str(ratio))))
-    sbs = pd.DataFrame({"dhondt "+str(seatRatio)+","+str(cutoff): resdhosum,
-                        "sainte lague "+str(seatRatio)+","+str(cutoff): resslsum,
-                        "winner takes all "+str(seatRatio)+","+str(cutoff): reswtasum,
-                        "single const "+str(seatRatio)+","+str(cutoff): ressc})
+    # ressc[ressc > 0].plot(kind="bar")
+    # plt.show()
+    # sbs = resdhosum.to_frame("Dhondt" + str(ratio)).join(
+    # resslsum.to_frame("sain lague" + str(ratio)).join(reswtasum.to_frame("Winner takes all" + str(ratio))))
+    sbs = pd.DataFrame({"dhondt " + str(seatRatio) + "," + str(cutoff): resdhosum,
+                        "sainte lague " + str(seatRatio) + "," + str(cutoff): resslsum,
+                        "winner takes all " + str(seatRatio) + "," + str(cutoff): reswtasum,
+                        "single const " + str(seatRatio) + "," + str(cutoff): ressc})
 
     sorter = "dhondt" + str(seatRatio) + "," + str(cutoff)
 

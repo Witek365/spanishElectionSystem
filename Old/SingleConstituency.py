@@ -66,6 +66,6 @@ def SingleConstituency(method, cutoff):
     print(res[res>0])
 
 if __name__ == "__main__":
-    SingleConstituency(dhondt,0)
+    SingleConstituency(method='dhondt',cutoff=0)
 
 
