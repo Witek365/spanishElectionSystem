@@ -17,8 +17,10 @@ configs = [
     ("G2019abril_mesas.xlsx", "dhondt", 1, 0),
 ]
 
+
 def col_name(year, method, seatRatio, cutoff):
     return f"{year[1:5]} {method} {seatRatio},{cutoff}"
+
 
 seats_list = []
 for year, method, ratio, cutoff in configs:
@@ -45,5 +47,5 @@ graph.plot(kind="bar")
 plt.title("Spanish Election Results depending on the method/parliament size/cutoff used")
 plt.xlabel("Parties in parliament")
 plt.ylabel("# of seats won")
-plt.xticks(rotation=45, ha='right',fontsize=6)
+plt.xticks(rotation=45, ha='right', fontsize=6)
 plt.show()
