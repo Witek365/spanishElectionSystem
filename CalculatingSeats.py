@@ -30,9 +30,11 @@ def seatCalculator(
 
     #with pd.option_context('display.max_rows', None, 'display.max_columns', None):
      #   print(province_votes)
-
     if cutoff > 0:
-        valid_votes = df['VÁLIDOS']
+        try:
+            valid_votes = df['VÁLIDOS']
+        except KeyError:
+            valid_votes = province_votes.sum().sum()
         votes_sum = province_votes[:-1].sum()
         labels = votes_sum.loc[votes_sum < valid_votes.sum() * cutoff].index
         labels = labels[:-1]
@@ -57,7 +59,8 @@ def seatCalculator(
 
     if "single const" in methods:
         ressc = SingleConstituency(province_votes)
-        cols[str(year[1:5]) + " single const " + str(seatRatio) + "," + str(cutoff)] = ressc
+        resscsum = ressc / seatRatio
+        cols[str(year[1:5]) + " single const " + str(seatRatio) + "," + str(cutoff)] = resscsum
 
     sbs = pd.DataFrame(cols)
 
